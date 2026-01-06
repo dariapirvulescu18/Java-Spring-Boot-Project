@@ -1,0 +1,1112 @@
+{
+	"info": {
+		"_postman_id": "ccfa053f-123f-4836-8f58-02753b0c079b",
+		"name": "My Collection",
+		"description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50384927",
+		"_collection_link": "https://dariapirvulescu188-5877069.postman.co/workspace/Daria-Pirvulescu's-Workspace~3fced3da-1184-449f-8ddb-65dd4dca862b/collection/50384927-ccfa053f-123f-4836-8f58-02753b0c079b?action=share&source=collection_link&creator=50384927"
+	},
+	"item": [
+		{
+			"name": "room_create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"number\": \"299\",\r\n  \"price\": 190.0,\r\n  \"capacity\": 20\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/rest/room/create",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"rest",
+						"room",
+						"create"
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": []
+		},
+		{
+			"name": "room_update",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"number\": \"291\",\r\n  \"price\": 190.0,\r\n  \"capacity\": 20\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/rest/room/update?id=1",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"rest",
+						"room",
+						"update"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": []
+		},
+		{
+			"name": "room_get_all",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"number\": \"291\",\r\n  \"price\": 190.0,\r\n  \"capacity\": 20,\r\n  \"status\": \"OCCUPIED\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/rest/room/get/all",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"rest",
+						"room",
+						"get",
+						"all"
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": []
+		},
+		{
+			"name": "room_get_one",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"number\": \"291\",\r\n  \"price\": 190.0,\r\n  \"capacity\": 20,\r\n  \"status\": \"OCCUPIED\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/rest/room/get/one?id=1",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"rest",
+						"room",
+						"get",
+						"one"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": []
+		},
+		{
+			"name": "room_get_by_number",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"number\": \"291\",\r\n  \"price\": 190.0,\r\n  \"capacity\": 20,\r\n  \"status\": \"OCCUPIED\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/rest/room/get/by/employee?roomId=3",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"rest",
+						"room",
+						"get",
+						"by",
+						"employee"
+					],
+					"query": [
+						{
+							"key": "roomId",
+							"value": "3"
+						}
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": []
+		},
+		{
+			"name": "room_get_by_assigned_employees",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"number\": \"291\",\r\n  \"price\": 190.0,\r\n  \"capacity\": 20,\r\n  \"status\": \"OCCUPIED\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/rest/room/get/by/number?nr=101",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"rest",
+						"room",
+						"get",
+						"by",
+						"number"
+					],
+					"query": [
+						{
+							"key": "nr",
+							"value": "101"
+						}
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": []
+		},
+		{
+			"name": "room_delete",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/rest/room/delete?id=1",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"rest",
+						"room",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "customer_create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Daria\",\n    \"email\": \"daria@gmail.com\",\n    \"phoneNumber\": \"+40743456787\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/rest/customers/create",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"rest",
+						"customers",
+						"create"
+					]
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "error_phone_customer_create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Daria\",\n    \"email\": \"daria@gmail.com\",\n    \"phoneNumber\": \"+480743456787\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/rest/customers/create",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"rest",
+						"customers",
+						"create"
+					]
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "error_same_email_customer_create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Daria\",\n    \"email\": \"ana.popescu@gmail.com\",\n    \"phoneNumber\": \"+40743456787\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/rest/customers/create",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"rest",
+						"customers",
+						"create"
+					]
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "customer_get_all",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Daria\",\n    \"email\": \"daria@gmail.com\",\n    \"phoneNumber\": \"+40743456787\"\n\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/rest/customers/get/all",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"rest",
+						"customers",
+						"get",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "customer_get_one",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Daria\",\n    \"email\": \"daria@gmail.com\",\n    \"phoneNumber\": \"+40743456787\"\n\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/rest/customers/get/one?id=1",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"rest",
+						"customers",
+						"get",
+						"one"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "customer_get_by_name",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Daria\",\n    \"email\": \"daria@gmail.com\",\n    \"phoneNumber\": \"+40743456787\"\n\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/rest/customers/get/by/name?name=ana",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"rest",
+						"customers",
+						"get",
+						"by",
+						"name"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "ana"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "customer_get_room_availability",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Daria\",\n    \"email\": \"daria@gmail.com\",\n    \"phoneNumber\": \"+40743456787\"\n\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/rest/customers/get/one/room/availability?roomId=1&checkIn=2026-01-19&checkOut=2026-01-20",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"rest",
+						"customers",
+						"get",
+						"one",
+						"room",
+						"availability"
+					],
+					"query": [
+						{
+							"key": "roomId",
+							"value": "1"
+						},
+						{
+							"key": "checkIn",
+							"value": "2026-01-19"
+						},
+						{
+							"key": "checkOut",
+							"value": "2026-01-20"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "customer_get_all_rooms_available",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Daria\",\n    \"email\": \"daria@gmail.com\",\n    \"phoneNumber\": \"+40743456787\"\n\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/rest/customers/get/all/rooms/availability?checkIn=2026-01-16&checkOut=2026-01-17",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"rest",
+						"customers",
+						"get",
+						"all",
+						"rooms",
+						"availability"
+					],
+					"query": [
+						{
+							"key": "checkIn",
+							"value": "2026-01-16"
+						},
+						{
+							"key": "checkOut",
+							"value": "2026-01-17"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "customer_make_reservation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"checkIn\": \"2026-01-12\",\r\n  \"checkOut\": \"2026-01-15\",\r\n  \"roomId\": 2,\r\n  \"customerId\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/rest/customers/make/reservation",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"rest",
+						"customers",
+						"make",
+						"reservation"
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": []
+		},
+		{
+			"name": "customer_add_package",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"roomId\": 1,\r\n\"customerId\":1,\r\n\"hotelPackageId\":1\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/rest/customers/addpackage",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"rest",
+						"customers",
+						"addpackage"
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": []
+		},
+		{
+			"name": "customer_leave_review",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"rating\": 5,\r\n\"comment\" :\"foarte frumos\",\r\n\"roomId\" : 1,\r\n\"customerId\" : 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/rest/customers/leave/review",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"rest",
+						"customers",
+						"leave",
+						"review"
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": []
+		},
+		{
+			"name": "customer_cancel_reservation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"number\": \"291\",\r\n  \"price\": 190.0,\r\n  \"capacity\": 20\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/rest/customers/cancel/reservation?idReservation=1",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"rest",
+						"customers",
+						"cancel",
+						"reservation"
+					],
+					"query": [
+						{
+							"key": "idReservation",
+							"value": "1"
+						}
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": []
+		},
+		{
+			"name": "employee_create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Daria\",\n    \"role\": \"manager\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/rest/employee/create",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"rest",
+						"employee",
+						"create"
+					]
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "employee_get_all",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Daria\",\n    \"email\": \"daria@gmail.com\",\n    \"phoneNumber\": \"+40743456787\"\n\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/rest/employee/get/all",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"rest",
+						"employee",
+						"get",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "employee_get_by_name",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Daria\",\n    \"email\": \"daria@gmail.com\",\n    \"phoneNumber\": \"+40743456787\"\n\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/rest/employee/get/by/name?name=john",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"rest",
+						"employee",
+						"get",
+						"by",
+						"name"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "john"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "employee_get_by_role",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Daria\",\n    \"email\": \"daria@gmail.com\",\n    \"phoneNumber\": \"+40743456787\"\n\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/rest/employee/get/by/role?role=manager",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"rest",
+						"employee",
+						"get",
+						"by",
+						"role"
+					],
+					"query": [
+						{
+							"key": "role",
+							"value": "manager"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "employee_get_one",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Daria\",\n    \"email\": \"daria@gmail.com\",\n    \"phoneNumber\": \"+40743456787\"\n\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/rest/employee/get/one?id=1",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"rest",
+						"employee",
+						"get",
+						"one"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "employee_assign_room",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Daria\",\n    \"email\": \"daria@gmail.com\",\n    \"phoneNumber\": \"+40743456787\"\n\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/rest/employee/assign/room?employeeId=1&roomId=3",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"rest",
+						"employee",
+						"assign",
+						"room"
+					],
+					"query": [
+						{
+							"key": "employeeId",
+							"value": "1"
+						},
+						{
+							"key": "roomId",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "employee_unassign_room",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Daria\",\n    \"email\": \"daria@gmail.com\",\n    \"phoneNumber\": \"+40743456787\"\n\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/rest/employee/unassign/room?employeeId=1&roomId=3",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"rest",
+						"employee",
+						"unassign",
+						"room"
+					],
+					"query": [
+						{
+							"key": "employeeId",
+							"value": "1"
+						},
+						{
+							"key": "roomId",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "employee_get_all_asigned_rooms",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Daria\",\n    \"email\": \"daria@gmail.com\",\n    \"phoneNumber\": \"+40743456787\"\n\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/rest/employee/get/by/room?employeeId=1",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"rest",
+						"employee",
+						"get",
+						"by",
+						"room"
+					],
+					"query": [
+						{
+							"key": "employeeId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
