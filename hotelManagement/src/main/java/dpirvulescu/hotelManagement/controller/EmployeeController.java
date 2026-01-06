@@ -2,6 +2,10 @@ package dpirvulescu.hotelManagement.controller;
 
 
 import dpirvulescu.hotelManagement.model.Employee;
+import dpirvulescu.hotelManagement.model.EmployeeRoom;
+import dpirvulescu.hotelManagement.model.Room;
+import dpirvulescu.hotelManagement.service.EmployeeRoomService;
+import dpirvulescu.hotelManagement.service.EmployeeRoomServiceImpl;
 import dpirvulescu.hotelManagement.service.EmployeeServiceImpl;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Size;
@@ -19,6 +23,8 @@ public class EmployeeController {
 
     @Autowired
     private EmployeeServiceImpl EmployeeService;
+    @Autowired
+    private EmployeeRoomServiceImpl EmployeeRoomService;
 
     @GetMapping("/get/all")
     public List<Employee> getAllEmployees() {
@@ -49,4 +55,26 @@ public class EmployeeController {
     public Employee createEmployee(@Valid @RequestBody Employee Employee) {
         return EmployeeService.createEmployee(Employee);
     }
+
+    @PostMapping("/assign/room")
+    public EmployeeRoom assignRoom(@RequestParam(value = "employeeId" ) Integer employeeId,
+                                   @RequestParam(value = "roomId" ) Integer roomId) {
+        return EmployeeRoomService.assignEmployeeToRoom(employeeId, roomId);
+    }
+
+    @DeleteMapping("/unassign/room")
+    public ResponseEntity<String> unassignRoom(@RequestParam(value = "employeeId" ) Integer employeeId,
+                                             @RequestParam(value = "roomId" ) Integer roomId) {
+        EmployeeRoomService.unassignEmployeeFromRoom(employeeId, roomId);
+        return ResponseEntity.ok("Room was unassigned successfully");
+    }
+
+    @GetMapping("/get/by/room")
+    public ResponseEntity<List<Room>> getRoomsForEmployee(@RequestParam(value = "employeeId" ) Integer employeeId) {
+        List<Room> rooms = EmployeeRoomService.getRoomsForEmployee(employeeId);
+        return ResponseEntity.status(HttpStatus.OK).body(rooms);
+    }
+
+
+
 }

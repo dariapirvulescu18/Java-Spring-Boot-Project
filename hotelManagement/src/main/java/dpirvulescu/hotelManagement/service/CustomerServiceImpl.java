@@ -5,6 +5,7 @@ import dpirvulescu.hotelManagement.dto.WriteReviewRequest;
 import dpirvulescu.hotelManagement.model.*;
 import dpirvulescu.hotelManagement.repository.*;
 import dpirvulescu.hotelManagement.dto.CreateReservationRequest;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -42,6 +43,13 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer createCustomer(Customer customer) {
+        if(customerRepository.existsByEmailIgnoreCase(customer.getEmail())){
+            throw new IllegalStateException("Email already exists");
+        }
+
+        if(customerRepository.existsByPhoneNumberIgnoreCase(customer.getPhoneNumber())){
+            throw new IllegalStateException("Phone number already exists");
+        }
         return customerRepository.save(customer);
     }
 
@@ -62,11 +70,11 @@ public class CustomerServiceImpl implements CustomerService {
             throw new IllegalArgumentException("Check-out date must be after check-in date");
         }
         Customer customer = customerRepository.findById(reservationRequest.getCustomerId())
-                .orElseThrow(() -> new RuntimeException("Customer not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Customer not found"));
 
 
         Room room = roomRepository.findById(reservationRequest.getRoomId())
-                .orElseThrow(() -> new RuntimeException("Room not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Room not found"));
 
         boolean overlapping = reservationRepository.existsOverlappingReservation(
                 room.getId(),
@@ -75,7 +83,7 @@ public class CustomerServiceImpl implements CustomerService {
         );
 
         if (overlapping) {
-            throw new RuntimeException("Room is not available for the selected dates");
+            throw new IllegalStateException("Room is not available for the selected dates");
         }
 
         Reservation reservation = new Reservation();
@@ -91,7 +99,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public Reservation cancelReservation(Integer id){
         Reservation reservation = reservationRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Reservation not found with id: " + id));
+                .orElseThrow(() -> new EntityNotFoundException("Reservation not found with id: " + id));
 
         if (reservation.getStatus() == ReservationStatus.CANCELLED) {
             throw new IllegalStateException("Reservation is already cancelled");
@@ -112,24 +120,29 @@ public class CustomerServiceImpl implements CustomerService {
     @Transactional(propagation = Propagation.REQUIRED)
     public Reservation addPackage(AddPackageRequest addPackageRequest) {
         Customer customer = customerRepository.findById(addPackageRequest.getCustomerId())
-                .orElseThrow(() -> new RuntimeException("Customer not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Customer not found"));
 
         HotelPackage hotelPackage = packageRepository.findById(addPackageRequest.getHotelPackageId())
-                .orElseThrow(() -> new RuntimeException("Package not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Package not found"));
 
         Room room = roomRepository.findById(addPackageRequest.getRoomId())
-                .orElseThrow(() -> new RuntimeException("Room not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Room not found"));
         Reservation reservation = reservationRepository
                 .findByCustomerIdAndRoomId(
                         addPackageRequest.getCustomerId(),
                         addPackageRequest.getRoomId()
                 )
-                .orElseThrow(() -> new RuntimeException(
+                .orElseThrow(() -> new IllegalStateException(
                         "Customer has no active reservation for this room"
                 ));
 
-
+        if (hotelPackage.getQuantity() <= 0) {
+            throw new IllegalStateException("Package is no longer available");
+        }
         reservation.setHotelPackage(hotelPackage);
+        hotelPackage.setQuantity(hotelPackage.getQuantity() - 1);
+        packageRepository.save(hotelPackage);
+
 
         return reservationRepository.save(reservation);
 
@@ -154,10 +167,10 @@ public class CustomerServiceImpl implements CustomerService {
         }
 
         Customer customer = customerRepository.findById(writeReviewRequest.getCustomerId())
-                .orElseThrow(() -> new IllegalArgumentException("Customer not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Customer not found"));
 
         Room room = roomRepository.findById(writeReviewRequest.getRoomId())
-                .orElseThrow(() -> new IllegalArgumentException("Room not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Room not found"));
 
         boolean alreadyReviewed = reviewRepository.existsByCustomerAndRoom(customer, room);
         if (alreadyReviewed) {

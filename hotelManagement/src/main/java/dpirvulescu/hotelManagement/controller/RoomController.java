@@ -1,9 +1,13 @@
 package dpirvulescu.hotelManagement.controller;
 
+import dpirvulescu.hotelManagement.model.Employee;
 import dpirvulescu.hotelManagement.model.Room;
+import dpirvulescu.hotelManagement.service.EmployeeRoomService;
+import dpirvulescu.hotelManagement.service.EmployeeRoomServiceImpl;
 import dpirvulescu.hotelManagement.service.RoomServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +19,9 @@ public class RoomController {
 
     @Autowired
     private RoomServiceImpl roomService;
+
+    @Autowired
+    private EmployeeRoomServiceImpl employeeRoomService;
 
     @PostMapping("/create")
     public ResponseEntity<Room> createRoom(@Valid @RequestBody Room room) {
@@ -52,6 +59,12 @@ public class RoomController {
     public ResponseEntity<Void> deleteRoom(@RequestParam(value = "id") int id) {
         roomService.deleteRoom(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/get/by/employee")
+    public ResponseEntity<List<Employee>> getEmployeesForRoom(@RequestParam(value = "roomId" ) Integer roomId) {
+        List<Employee> employees= employeeRoomService.getEmployeesForRoom(roomId);
+        return ResponseEntity.status(HttpStatus.OK).body(employees);
     }
 
 

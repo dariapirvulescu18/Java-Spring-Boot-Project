@@ -9,3 +9,4 @@ public interface JPARoomRepository extends JpaRepository<Room, Integer> {
     Optional<Room> findByNumber(String roomNumber);
 
 }
+

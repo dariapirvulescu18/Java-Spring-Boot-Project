@@ -7,6 +7,8 @@ import dpirvulescu.hotelManagement.service.CustomerServiceImpl;
 import dpirvulescu.hotelManagement.dto.CreateReservationRequest;
 import dpirvulescu.hotelManagement.service.RoomService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,7 +38,7 @@ public class CustomerController {
     }
 
     @GetMapping("/get/by/name")
-    public ResponseEntity<List<Customer>> getCustomerByName(@RequestParam(value = "name" ) @Size(max = 100) String name) {
+    public ResponseEntity<List<Customer>> getCustomerByName(@Size(max = 100)@RequestParam(value = "name" ) @Size(max = 100) String name) {
         List<Customer> customers = customerService.findCustomerByName(name);
         return ResponseEntity.status(HttpStatus.OK).body(customers);
     }
@@ -48,7 +50,7 @@ public class CustomerController {
     }
 
     @PostMapping("/make/reservation")
-    public Reservation makeReservation(@RequestBody CreateReservationRequest reservationRequest) {
+    public Reservation makeReservation(@Valid @RequestBody CreateReservationRequest reservationRequest) {
         return customerService.makeReservation(reservationRequest);
     }
     @PutMapping("/cancel/reservation")
@@ -57,28 +59,28 @@ public class CustomerController {
     }
 
     @PostMapping("/addpackage")
-    public Reservation addPackage (@RequestBody AddPackageRequest addPackageRequest) {
+    public Reservation addPackage (@Valid @RequestBody AddPackageRequest addPackageRequest) {
         return customerService.addPackage(addPackageRequest);
     }
 
     @GetMapping("/get/one/room/availability")
     public ResponseEntity<Room> getOneRoomAvailability
                                                 (@RequestParam(value = "roomId" ) Integer roomId,
-                                                 @RequestParam(value = "checkIn" ) LocalDate checkIn,
-                                                @RequestParam(value = "checkOut" ) LocalDate checkOut) {
+                                                 @FutureOrPresent   @RequestParam(value = "checkIn" ) LocalDate checkIn,
+                                                 @FutureOrPresent @RequestParam(value = "checkOut" ) LocalDate checkOut) {
         Optional<Room> room = customerService.getOneRoomAvailability(roomId, checkIn,checkOut);
         return room.map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/get/all/rooms/availability")
-    public List<Room> getAllRoomsAvailability (@RequestParam(value = "checkIn" ) LocalDate checkIn,
-                                                @RequestParam(value = "checkOut" ) LocalDate checkOut)  {
+    public List<Room> getAllRoomsAvailability (@FutureOrPresent @RequestParam(value = "checkIn" ) LocalDate checkIn,
+                                               @FutureOrPresent @RequestParam(value = "checkOut" ) LocalDate checkOut)  {
         return customerService.getAllRoomsAvailability(checkIn,checkOut);
     }
 
     @PostMapping("/leave/review")
-    public Review leaveReview(@RequestBody WriteReviewRequest  writeReviewRequest) {
+    public Review leaveReview(@Valid @RequestBody WriteReviewRequest  writeReviewRequest) {
         return customerService.leaveReview(writeReviewRequest);
     }
 

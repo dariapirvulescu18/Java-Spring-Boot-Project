@@ -2,6 +2,8 @@ package dpirvulescu.hotelManagement.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Employee {
@@ -10,9 +12,11 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank
+    @NotNull
+    @Size(min = 1, max = 100)
     private String name;
 
+    @NotNull
     private String role;
 
 

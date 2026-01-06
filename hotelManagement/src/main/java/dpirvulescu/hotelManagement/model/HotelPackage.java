@@ -1,6 +1,8 @@
 package dpirvulescu.hotelManagement.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "\"HOTELPACKAGE\"")
@@ -8,20 +10,31 @@ public class HotelPackage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
+    @NotNull
+    @Size(min = 1, max = 50)
     private String name;
     private Boolean breakfastIncluded;
     private Boolean spaIncluded;
     private Boolean poolIncluded;
+    private Integer quantity;
 
-    public HotelPackage(Integer id, String name, Boolean breakfastIncluded, Boolean spaIncluded, Boolean poolIncluded) {
+    public HotelPackage(Integer id, String name, Boolean breakfastIncluded, Boolean spaIncluded, Boolean poolIncluded, Integer quantity) {
         this.id = id;
         this.name = name;
         this.breakfastIncluded = breakfastIncluded;
         this.spaIncluded = spaIncluded;
         this.poolIncluded = poolIncluded;
+        this.quantity = quantity;
     }
     public HotelPackage() {}
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
 
     public Integer getId() {
         return id;

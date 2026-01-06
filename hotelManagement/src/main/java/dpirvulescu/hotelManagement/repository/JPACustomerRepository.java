@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface JPACustomerRepository extends JpaRepository<Customer, Integer> {
     public List<Customer> findByNameContainingIgnoreCase(String name);
+    public boolean existsByEmailIgnoreCase(String email);
+    public boolean existsByPhoneNumberIgnoreCase(String phoneNumber);
 }

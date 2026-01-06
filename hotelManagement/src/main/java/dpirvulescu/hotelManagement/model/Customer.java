@@ -1,6 +1,7 @@
 package dpirvulescu.hotelManagement.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "Customer")
@@ -16,7 +17,11 @@ public class Customer {
     @Column(unique = true, length = 150)
     private String email;
 
-    @Column(name = "phone_number", nullable = false, length = 20)
+    @Pattern(
+            regexp = "^(\\+407|07)\\d{8}$",
+            message = "Phone number must be a valid Romanian number"
+    )
+    @Column(name = "phone_number", unique = true, nullable = false, length = 13)
     private String phoneNumber;
 
     public Customer() {

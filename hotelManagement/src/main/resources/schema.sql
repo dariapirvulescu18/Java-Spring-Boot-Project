@@ -4,7 +4,8 @@ CREATE TABLE IF NOT EXISTS HotelPackage (
     name VARCHAR(100) NOT NULL,
     breakfast_included BOOLEAN,
     spa_included BOOLEAN,
-    pool_included BOOLEAN
+    pool_included BOOLEAN,
+    quantity INT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Room (
@@ -12,8 +13,6 @@ CREATE TABLE IF NOT EXISTS Room (
     number VARCHAR(20) NOT NULL,
     price DOUBLE NOT NULL,
     capacity INT NOT NULL
-
-
 );
 
 CREATE TABLE IF NOT EXISTS Customer (
@@ -83,16 +82,16 @@ INSERT INTO Room (number, price, capacity) VALUES ('103', 180.0, 2);
 INSERT INTO Room (number, price, capacity) VALUES ('104', 220.0, 4);
 INSERT INTO Room (number, price, capacity) VALUES ('105', 250.0, 3);
 
-INSERT INTO HotelPackage (name, breakfast_included, spa_included, pool_included)
-VALUES ('Standard Package', TRUE, FALSE, FALSE);
-INSERT INTO HotelPackage (name, breakfast_included, spa_included, pool_included)
-VALUES ('Relax Package', TRUE, TRUE, FALSE);
-INSERT INTO HotelPackage (name, breakfast_included, spa_included, pool_included)
-VALUES ('Luxury Package', TRUE, TRUE, TRUE);
-INSERT INTO HotelPackage (name, breakfast_included, spa_included, pool_included)
-VALUES ('Poolside Package', FALSE, FALSE, TRUE);
-INSERT INTO HotelPackage (name, breakfast_included, spa_included, pool_included)
-VALUES ('Business Package', TRUE, FALSE, FALSE);
+INSERT INTO HotelPackage (name, breakfast_included, spa_included, pool_included, quantity)
+VALUES ('Standard Package', TRUE, FALSE, FALSE, 10);
+INSERT INTO HotelPackage (name, breakfast_included, spa_included, pool_included, quantity)
+VALUES ('Relax Package', TRUE, TRUE, FALSE, 1);
+INSERT INTO HotelPackage (name, breakfast_included, spa_included, pool_included, quantity)
+VALUES ('Luxury Package', TRUE, TRUE, TRUE, 3);
+INSERT INTO HotelPackage (name, breakfast_included, spa_included, pool_included, quantity)
+VALUES ('Poolside Package', FALSE, FALSE, TRUE,6);
+INSERT INTO HotelPackage (name, breakfast_included, spa_included, pool_included, quantity)
+VALUES ('Business Package', TRUE, FALSE, FALSE,9);
 
 
 INSERT INTO Employee (name, role) VALUES ('John Smith', 'Receptionist');
@@ -107,4 +106,10 @@ INSERT INTO Customer (name, email, phone_number) VALUES ('Mihai Ionescu', 'mihai
 INSERT INTO Customer (name, email, phone_number) VALUES ('Ioana Vasilescu', 'ioana.vasilescu@gmail.com', '+40741234569');
 INSERT INTO Customer (name, email, phone_number) VALUES ('Andrei Georgescu', 'andrei.georgescu@hotmail.com', '+40741234570');
 INSERT INTO Customer (name, email, phone_number) VALUES ('Cristina Dumitrescu', 'cristina.dumitrescu@gmail.com', '+40741234571');
+
+INSERT INTO EmployeeRoom (employee_id, room_id) VALUES (1, 1);
+INSERT INTO EmployeeRoom (employee_id, room_id) VALUES (1, 2);
+INSERT INTO EmployeeRoom (employee_id, room_id) VALUES (2, 3);
+INSERT INTO EmployeeRoom (employee_id, room_id) VALUES (3, 4);
+INSERT INTO EmployeeRoom (employee_id, room_id) VALUES (4, 5);
 
