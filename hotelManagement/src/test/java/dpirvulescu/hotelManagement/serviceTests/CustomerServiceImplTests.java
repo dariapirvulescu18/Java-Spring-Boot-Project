@@ -6,16 +6,18 @@ import dpirvulescu.hotelManagement.repository.*;
 import dpirvulescu.hotelManagement.service.CustomerServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class CustomerServiceImplTest {
+@ExtendWith(MockitoExtension.class)
+class CustomerServiceImplTests {
 
     @InjectMocks
     private CustomerServiceImpl customerService;

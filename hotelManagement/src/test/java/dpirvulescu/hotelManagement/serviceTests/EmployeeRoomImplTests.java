@@ -11,8 +11,9 @@ import dpirvulescu.hotelManagement.service.EmployeeRoomServiceImpl;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.*;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,8 +21,8 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-@SpringBootTest
-class EmployeeRoomServiceImplTest {
+@ExtendWith(MockitoExtension.class)
+class EmployeeRoomImplTests {
 
     @InjectMocks
     private EmployeeRoomServiceImpl employeeRoomService;
