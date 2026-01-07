@@ -2,6 +2,7 @@ package dpirvulescu.hotelManagement.service;
 
 import dpirvulescu.hotelManagement.dto.AddPackageRequest;
 import dpirvulescu.hotelManagement.dto.WriteReviewRequest;
+import dpirvulescu.hotelManagement.exception.CancelReservationException;
 import dpirvulescu.hotelManagement.model.*;
 import dpirvulescu.hotelManagement.repository.*;
 import dpirvulescu.hotelManagement.dto.CreateReservationRequest;
@@ -106,9 +107,7 @@ public class CustomerServiceImpl implements CustomerService {
         }
         LocalDate today = LocalDate.now();
         if (!reservation.getCheckIn().isAfter(today.plusDays(10))) {
-            throw new IllegalStateException(
-                    "Cannot cancel reservation: check-in is less than 10 days from today"
-            );
+            throw new CancelReservationException(reservation.getCustomer().getName());
         }
 
         reservation.setStatus(ReservationStatus.CANCELLED);

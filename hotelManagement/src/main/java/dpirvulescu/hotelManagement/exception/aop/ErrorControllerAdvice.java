@@ -1,5 +1,6 @@
-package dpirvulescu.hotelManagement.aop;
+package dpirvulescu.hotelManagement.exception.aop;
 
+import dpirvulescu.hotelManagement.exception.CancelReservationException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -58,5 +59,12 @@ public class ErrorControllerAdvice {
         body.put("status", HttpStatus.BAD_REQUEST.value());
 
         return ResponseEntity.badRequest().body(body);
+    }
+
+    @ExceptionHandler({CancelReservationException.class})
+    public ResponseEntity<String> handle(CancelReservationException e) {
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(e.getMessage() + " at " + LocalDateTime.now());
     }
 }
