@@ -36,6 +36,9 @@ public class WriteReviewRequest {
         this.customerId = customerId;
     }
 
+    public WriteReviewRequest() {
+    }
+
     public Integer getRating() {
         return rating;
     }

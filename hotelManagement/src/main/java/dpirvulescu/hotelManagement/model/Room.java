@@ -70,6 +70,9 @@ public class Room {
     }
 
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
 }
 

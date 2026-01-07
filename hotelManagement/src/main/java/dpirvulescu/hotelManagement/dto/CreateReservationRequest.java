@@ -6,6 +6,7 @@ import dpirvulescu.hotelManagement.model.Room;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import org.json.JSONObject;
 
 import java.time.LocalDate;
 
@@ -76,5 +77,16 @@ public class CreateReservationRequest {
 
     public void setHotelPackageId(Integer hotelPackageId) {
         this.hotelPackageId = hotelPackageId;
+    }
+
+    @Override
+    public String toString() {
+        JSONObject json = new JSONObject();
+        json.put("checkIn", checkIn);
+        json.put("checkOut", checkOut);
+        json.put("roomId", roomId);
+        json.put("customerId", customerId);
+        json.put("hotelPackageId", hotelPackageId);
+        return json.toString();
     }
 }
