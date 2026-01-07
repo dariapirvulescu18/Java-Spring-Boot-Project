@@ -119,7 +119,7 @@ class RoomServiceImplTest {
         assertFalse(result.isPresent());
     }
 
-  
+
 
     @Test
     void testFindByNumber_Found() {

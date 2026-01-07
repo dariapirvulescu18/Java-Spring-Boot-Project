@@ -76,7 +76,6 @@ class HotelPackageControllerTest {
     @Test
     void createPackage_valid_shouldReturn200() throws Exception {
         HotelPackage input = samplePackage();
-        input.setId(null);
 
         when(packageService.createPackage(any(HotelPackage.class))).thenReturn(samplePackage());
 

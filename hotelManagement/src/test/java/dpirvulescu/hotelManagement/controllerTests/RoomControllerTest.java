@@ -21,6 +21,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
@@ -61,17 +62,23 @@ class RoomControllerTest {
         Room newRoom = new Room(103, "103", 200.0, 2);
         Room savedRoom = new Room(103, "103", 200.0, 2);
 
-        Mockito.when(roomService.createRoom(any(Room.class))).thenReturn(savedRoom);
+        Mockito.when(roomService.createRoom(Mockito.argThat(room ->
+                room.getId() == 103 &&
+                        room.getNumber().equals("103") &&
+                        room.getPrice() == 200.0 &&
+                        room.getCapacity() == 2
+        ))).thenReturn(savedRoom);
 
         mockMvc.perform(post("/rest/room/create")
-                        .contentType(String.valueOf(MediaType.APPLICATION_JSON))
+                        .contentType(String.valueOf((MediaType.APPLICATION_JSON)))
                         .content(objectMapper.writeValueAsString(newRoom)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(103))
-                .andExpect(jsonPath("$.number").value( "103"))
-                .andExpect(jsonPath("$.price").value( 200.0))
-                .andExpect(jsonPath("$.capacity").value((2)));
+                .andExpect(jsonPath("$.number").value("103"))
+                .andExpect(jsonPath("$.price").value(200.0))
+                .andExpect(jsonPath("$.capacity").value(2));
     }
+
 
     @Test
     void testGetAllRooms() throws Exception {

@@ -84,11 +84,12 @@ class CustomerControllerTest {
 
     @Test
     void getAllCustomers_shouldReturn200() throws Exception {
-        when(customerService.getAllCustomers()).thenReturn(List.of(createCustomer(1)));
+        when(customerService.getAllCustomers()).thenReturn(List.of(createCustomer(1), createCustomer(2)));
 
         mockMvc.perform(get("/rest/customers/get/all"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].name").value("John Doe"));
+                .andExpect(jsonPath("$[0].name").value("John Doe"))
+                        .andExpect(jsonPath("$[1].name").value("John Doe"));
     }
 
     @Test
@@ -102,9 +103,9 @@ class CustomerControllerTest {
 
     @Test
     void getCustomerById_notFound_shouldReturn404() throws Exception {
-        when(customerService.getCustomerById(1)).thenReturn(Optional.empty());
+        when(customerService.getCustomerById(1)).thenReturn(Optional.of(createCustomer(1)));
 
-        mockMvc.perform(get("/rest/customers/get/one?id=1"))
+        mockMvc.perform(get("/rest/customers/get/one?id=2"))
                 .andExpect(status().isNotFound());
     }
 
