@@ -32,7 +32,7 @@ class EmployeeServiceImplTest {
         employee2 = new Employee(2, "Bob Smith", "Cleaner");
     }
 
-    // ------------------ getAllEmployees ------------------
+
 
     @Test
     void testGetAllEmployees() {
@@ -45,7 +45,7 @@ class EmployeeServiceImplTest {
         assertTrue(result.contains(employee2));
     }
 
-    // ------------------ getEmployeeById ------------------
+
 
     @Test
     void testGetEmployeeById_Found() {
@@ -66,7 +66,7 @@ class EmployeeServiceImplTest {
         assertFalse(result.isPresent());
     }
 
-    // ------------------ createEmployee ------------------
+
 
     @Test
     void testCreateEmployee() {
@@ -77,7 +77,7 @@ class EmployeeServiceImplTest {
         assertEquals(employee1, result);
     }
 
-    // ------------------ findEmployeeByName ------------------
+
 
     @Test
     void testFindEmployeeByName() {
@@ -89,7 +89,7 @@ class EmployeeServiceImplTest {
         assertEquals(employee1, result.get(0));
     }
 
-    // ------------------ findEmployeeByRole ------------------
+
 
     @Test
     void testFindEmployeeByRole() {

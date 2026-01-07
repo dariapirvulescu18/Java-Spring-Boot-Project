@@ -36,7 +36,7 @@ class RoomServiceImplTest {
         room2 = new Room(2, "102", 150.0, 3);
     }
 
-    // ------------------ createRoom ------------------
+
 
     @Test
     void testCreateRoom() {
@@ -47,7 +47,7 @@ class RoomServiceImplTest {
         assertEquals(room1, result);
     }
 
-    // ------------------ getAllRooms ------------------
+
 
     @Test
     void testGetAllRooms() {
@@ -60,7 +60,7 @@ class RoomServiceImplTest {
         assertTrue(rooms.contains(room2));
     }
 
-    // ------------------ updateRoom ------------------
+
 
     @Test
     void testUpdateRoom_Success() {
@@ -87,7 +87,7 @@ class RoomServiceImplTest {
         verify(roomRepository, never()).save(any());
     }
 
-    // ------------------ deleteRoom ------------------
+
 
     @Test
     void testDeleteRoom() {
@@ -98,7 +98,7 @@ class RoomServiceImplTest {
         verify(roomRepository, times(1)).deleteById(1);
     }
 
-    // ------------------ getRoomById ------------------
+
 
     @Test
     void testGetRoomById_Found() {
@@ -119,7 +119,7 @@ class RoomServiceImplTest {
         assertFalse(result.isPresent());
     }
 
-    // ------------------ findByNumber ------------------
+  
 
     @Test
     void testFindByNumber_Found() {

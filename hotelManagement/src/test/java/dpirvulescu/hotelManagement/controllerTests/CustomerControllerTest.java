@@ -40,7 +40,7 @@ class CustomerControllerTest {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    // ---------------- Helper Methods ----------------
+
     private Customer createCustomer(Integer id) {
         Customer c = new Customer();
         c.setId(id);
@@ -80,7 +80,7 @@ class CustomerControllerTest {
         return r;
     }
 
-    // ---------------- Tests ----------------
+
 
     @Test
     void getAllCustomers_shouldReturn200() throws Exception {

@@ -28,7 +28,6 @@ class HotelPackageControllerTest {
     @MockitoBean
     private HotelPackageService packageService;
 
-    // Directly instantiate ObjectMapper to avoid missing bean
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     private HotelPackage samplePackage() {
@@ -43,7 +42,7 @@ class HotelPackageControllerTest {
         return hp;
     }
 
-    // ---------------- GET ALL ----------------
+
     @Test
     void getAllPackages_shouldReturn200AndList() throws Exception {
         when(packageService.getAllPackages()).thenReturn(List.of(samplePackage()));
@@ -54,7 +53,7 @@ class HotelPackageControllerTest {
                 .andExpect(jsonPath("$[0].quantity").value(10));
     }
 
-    // ---------------- GET BY ID ----------------
+
     @Test
     void getPackageById_found_shouldReturn200() throws Exception {
         when(packageService.getPackageById(1)).thenReturn(Optional.of(samplePackage()));
@@ -73,7 +72,7 @@ class HotelPackageControllerTest {
                 .andExpect(status().isNotFound());
     }
 
-    // ---------------- CREATE ----------------
+
     @Test
     void createPackage_valid_shouldReturn200() throws Exception {
         HotelPackage input = samplePackage();
@@ -105,7 +104,7 @@ class HotelPackageControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
-    // ---------------- UPDATE ----------------
+
     @Test
     void updatePackage_found_shouldReturn200() throws Exception {
         when(packageService.updatePackage(eq(1), any(HotelPackage.class)))
@@ -129,7 +128,7 @@ class HotelPackageControllerTest {
                 .andExpect(status().isNotFound());
     }
 
-    // ---------------- DELETE ----------------
+
     @Test
     void deletePackage_found_shouldReturn204() throws Exception {
         when(packageService.deletePackage(1)).thenReturn(true);

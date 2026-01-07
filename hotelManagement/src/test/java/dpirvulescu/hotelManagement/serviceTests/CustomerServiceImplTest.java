@@ -62,7 +62,7 @@ class CustomerServiceImplTest {
         review.setComment("Excellent");
     }
 
-    // ------------------ Customer Tests ------------------
+
 
     @Test
     void testCreateCustomer_Success() {
@@ -95,7 +95,7 @@ class CustomerServiceImplTest {
         assertEquals("Phone number already exists", ex.getMessage());
     }
 
-    // ------------------ Reservation Tests ------------------
+
 
     @Test
     void testMakeReservation_Success() {
@@ -146,7 +146,7 @@ class CustomerServiceImplTest {
         );
     }
 
-    // ------------------ Add Package Tests ------------------
+
 
     @Test
     void testAddPackage_Success() {
@@ -190,7 +190,7 @@ class CustomerServiceImplTest {
         assertEquals("Package is no longer available", ex.getMessage());
     }
 
-    // ------------------ Review Tests ------------------
+
 
     @Test
     void testLeaveReview_Success() {

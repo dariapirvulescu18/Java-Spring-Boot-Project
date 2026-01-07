@@ -35,7 +35,7 @@ class HotelPackageServiceImplTest {
         package2.setId(2);
     }
 
-    // ------------------ getAllPackages ------------------
+
 
     @Test
     void testGetAllPackages() {
@@ -48,7 +48,7 @@ class HotelPackageServiceImplTest {
         assertTrue(result.contains(package2));
     }
 
-    // ------------------ getPackageById ------------------
+
 
     @Test
     void testGetPackageById_Found() {
@@ -69,7 +69,7 @@ class HotelPackageServiceImplTest {
         assertFalse(result.isPresent());
     }
 
-    // ------------------ createPackage ------------------
+
 
     @Test
     void testCreatePackage() {
@@ -80,7 +80,7 @@ class HotelPackageServiceImplTest {
         assertEquals(package1, result);
     }
 
-    // ------------------ updatePackage ------------------
+
 
     @Test
     void testUpdatePackage_Success() {
@@ -109,7 +109,6 @@ class HotelPackageServiceImplTest {
         assertFalse(result.isPresent());
     }
 
-    // ------------------ deletePackage ------------------
 
     @Test
     void testDeletePackage_Success() {
