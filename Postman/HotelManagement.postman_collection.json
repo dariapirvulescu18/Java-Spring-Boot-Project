@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "ccfa053f-123f-4836-8f58-02753b0c079b",
-		"name": "My Collection",
+		"name": "HotelManagement",
 		"description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "50384927",
@@ -331,6 +331,195 @@
 			"response": []
 		},
 		{
+			"name": "packages_get_all",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"number\": \"291\",\r\n  \"price\": 190.0,\r\n  \"capacity\": 20,\r\n  \"status\": \"OCCUPIED\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/rest/packages/get/all",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"rest",
+						"packages",
+						"get",
+						"all"
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": []
+		},
+		{
+			"name": "packages_get_one",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"number\": \"291\",\r\n  \"price\": 190.0,\r\n  \"capacity\": 20,\r\n  \"status\": \"OCCUPIED\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/rest/packages/get?id=1",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"rest",
+						"packages",
+						"get"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": []
+		},
+		{
+			"name": "package_create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Relax & Spa\",\r\n  \"breakfastIncluded\": true,\r\n  \"spaIncluded\": true,\r\n  \"poolIncluded\": false,\r\n  \"quantity\": 10\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/rest/packages/create",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"rest",
+						"packages",
+						"create"
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": []
+		},
+		{
+			"name": "package_update",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Relax & Spa\",\r\n  \"breakfastIncluded\": true,\r\n  \"spaIncluded\": true,\r\n  \"poolIncluded\": false,\r\n  \"quantity\": 10\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/rest/packages/update?id=1",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"rest",
+						"packages",
+						"update"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": []
+		},
+		{
 			"name": "customer_create",
 			"event": [
 				{
@@ -353,7 +542,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Daria\",\n    \"email\": \"daria@gmail.com\",\n    \"phoneNumber\": \"+40743456787\"\n\n}",
+					"raw": "{\n\t\"name\": \"Daria\",\n    \"email\": \"daria2@gmail.com\",\n    \"phoneNumber\": \"+40743456787\"\n\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -708,7 +897,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\"roomId\": 1,\r\n\"customerId\":1,\r\n\"hotelPackageId\":1\r\n}\r\n",
+					"raw": "{\r\n\"roomId\": 2,\r\n\"customerId\":1,\r\n\"hotelPackageId\":2\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
