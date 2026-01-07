@@ -1,13 +1,20 @@
 package dpirvulescu.hotelManagement.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Embeddable;
+import jakarta.validation.constraints.NotNull;
+
 import java.io.Serializable;
 import java.util.Objects;
 
+@Schema(name = "EmployeeRoomId", description = "Composite key for EmployeeRoom, containing employeeId and roomId")
 @Embeddable
 public class EmployeeRoomId implements Serializable {
-
+    @NotNull
+    @Schema(description = "ID of the employee", example = "1")
     private Integer employeeId;
+    @NotNull
+    @Schema(description = "ID of the room", example = "101")
     private Integer roomId;
 
     public EmployeeRoomId() {}

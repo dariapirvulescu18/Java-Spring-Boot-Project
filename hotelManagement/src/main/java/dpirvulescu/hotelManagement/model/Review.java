@@ -1,5 +1,6 @@
 package dpirvulescu.hotelManagement.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -8,30 +9,37 @@ import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
+@Schema(name = "Review", description = "Represents a review left by a customer for a room")
 @Entity
 public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(description = "Unique identifier of the review", example = "1")
     private Integer id;
 
     @NotNull
     @Min(1)
     @Max(5)
+    @Schema(description = "Rating given by the customer (1 to 5)", example = "4")
     private Integer rating;
 
     @Size(max = 500)
+    @Schema(description = "Optional comment provided by the customer", example = "The room was clean and comfortable.")
     private String comment;
 
     @NotNull
+    @Schema(description = "Date when the review was left", example = "2026-01-10")
     private LocalDate date;
 
     @ManyToOne
     @JoinColumn(name = "room_id", nullable = false)
+    @Schema(description = "Room being reviewed")
     private Room room;
 
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
+    @Schema(description = "Customer who wrote the review")
     private Customer customer;
 
 
