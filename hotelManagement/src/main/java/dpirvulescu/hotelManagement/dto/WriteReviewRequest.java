@@ -22,10 +22,6 @@ public class WriteReviewRequest {
     private String comment;
 
     @NotNull
-    @Schema(description = "Date the review is written", example = "2026-01-06", required = true)
-    private LocalDate date;
-
-    @NotNull
     @Schema(description = "ID of the room being reviewed", example = "101", required = true)
     private Integer roomId;
 
@@ -33,10 +29,9 @@ public class WriteReviewRequest {
     @Schema(description = "ID of the customer writing the review", example = "1", required = true)
     private Integer customerId;
 
-    public WriteReviewRequest(Integer rating, String comment, LocalDate date, Integer roomId, Integer customerId) {
+    public WriteReviewRequest(Integer rating, String comment, Integer roomId, Integer customerId) {
         this.rating = rating;
         this.comment = comment;
-        this.date = date;
         this.roomId = roomId;
         this.customerId = customerId;
     }
@@ -47,10 +42,6 @@ public class WriteReviewRequest {
 
     public String getComment() {
         return comment;
-    }
-
-    public LocalDate getDate() {
-        return date;
     }
 
     public Integer getRoomId() {
@@ -67,10 +58,6 @@ public class WriteReviewRequest {
 
     public void setComment(String comment) {
         this.comment = comment;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
     }
 
     public void setRoomId(Integer roomId) {

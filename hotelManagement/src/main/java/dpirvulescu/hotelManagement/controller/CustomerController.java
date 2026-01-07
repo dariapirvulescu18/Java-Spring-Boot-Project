@@ -2,6 +2,8 @@ package dpirvulescu.hotelManagement.controller;
 
 import dpirvulescu.hotelManagement.dto.AddPackageRequest;
 import dpirvulescu.hotelManagement.dto.WriteReviewRequest;
+import dpirvulescu.hotelManagement.mapper.CreateReservationMapper;
+import dpirvulescu.hotelManagement.mapper.WriteReviewMapper;
 import dpirvulescu.hotelManagement.model.*;
 import dpirvulescu.hotelManagement.service.CustomerServiceImpl;
 import dpirvulescu.hotelManagement.dto.CreateReservationRequest;
@@ -33,6 +35,14 @@ import java.util.Optional;
 public class CustomerController {
     @Autowired
     private CustomerServiceImpl customerService;
+
+    @Autowired
+    private WriteReviewMapper writeReviewMapper;
+
+
+    @Autowired
+    private CreateReservationMapper createReservationMapper;
+
 
     @Operation(
             summary = "Get all customers",
@@ -102,7 +112,8 @@ public class CustomerController {
     })
     @PostMapping("/make/reservation")
     public Reservation makeReservation(@Valid @RequestBody CreateReservationRequest reservationRequest) {
-        return customerService.makeReservation(reservationRequest);
+        Reservation reservation = createReservationMapper.createReservation(reservationRequest);
+        return customerService.makeReservation(reservation);
     }
 
     @Operation(
@@ -129,8 +140,9 @@ public class CustomerController {
             @ApiResponse(responseCode = "404", description = "Reservation or package or customer not found")
     })
     @PostMapping("/addpackage")
-    public Reservation addPackage (@Valid @RequestBody AddPackageRequest addPackageRequest) {
-        return customerService.addPackage(addPackageRequest);
+    public Reservation addPackage (@RequestParam(value = "reservationId" ) Integer reservationId,
+                                   @RequestParam(value = "packageId" ) Integer packageId) {
+       return customerService.addPackage(reservationId, packageId);
     }
 
     @Operation(
@@ -180,7 +192,8 @@ public class CustomerController {
     })
     @PostMapping("/leave/review")
     public Review leaveReview(@Valid @RequestBody WriteReviewRequest  writeReviewRequest) {
-        return customerService.leaveReview(writeReviewRequest);
+        Review review = writeReviewMapper.writeReview(writeReviewRequest);
+        return customerService.leaveReview(review);
     }
 
 

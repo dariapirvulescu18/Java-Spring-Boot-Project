@@ -21,16 +21,16 @@ public interface CustomerService {
 
     List<Customer> findCustomerByName(String name);
 
-    Reservation makeReservation(CreateReservationRequest reservationRequest);
+    Reservation makeReservation(Reservation reservation);
 
     Reservation cancelReservation(Integer id);
 
-    Reservation addPackage(AddPackageRequest addPackageRequest);
+    Reservation addPackage(Integer reservationId, Integer packageId);
 
     Optional<Room> getOneRoomAvailability (Integer roomId, LocalDate checkIn, LocalDate checkOut);
 
     List<Room> getAllRoomsAvailability(LocalDate checkIn, LocalDate checkOut);
 
-    Review leaveReview (WriteReviewRequest writeReviewRequest);
+    Review leaveReview (Review review);
 
 }

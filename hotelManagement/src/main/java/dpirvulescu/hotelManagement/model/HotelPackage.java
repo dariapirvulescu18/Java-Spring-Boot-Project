@@ -32,8 +32,7 @@ public class HotelPackage {
     @Schema(description = "Number of packages available", example = "10")
     private Integer quantity;
 
-    public HotelPackage(Integer id, String name, Boolean breakfastIncluded, Boolean spaIncluded, Boolean poolIncluded, Integer quantity) {
-        this.id = id;
+    public HotelPackage(String name, Boolean breakfastIncluded, Boolean spaIncluded, Boolean poolIncluded, Integer quantity) {
         this.name = name;
         this.breakfastIncluded = breakfastIncluded;
         this.spaIncluded = spaIncluded;

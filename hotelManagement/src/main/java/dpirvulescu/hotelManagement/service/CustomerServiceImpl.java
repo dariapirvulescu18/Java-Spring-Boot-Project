@@ -3,6 +3,7 @@ package dpirvulescu.hotelManagement.service;
 import dpirvulescu.hotelManagement.dto.AddPackageRequest;
 import dpirvulescu.hotelManagement.dto.WriteReviewRequest;
 import dpirvulescu.hotelManagement.exception.CancelReservationException;
+import dpirvulescu.hotelManagement.mapper.WriteReviewMapper;
 import dpirvulescu.hotelManagement.model.*;
 import dpirvulescu.hotelManagement.repository.*;
 import dpirvulescu.hotelManagement.dto.CreateReservationRequest;
@@ -62,37 +63,11 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public Reservation makeReservation(CreateReservationRequest reservationRequest) {
-        if (reservationRequest.getCheckIn() == null || reservationRequest.getCheckOut() == null) {
-            throw new IllegalArgumentException("Check-in and check-out dates must not be null");
-        }
+    public Reservation makeReservation(Reservation reservation) {
 
-        if (!reservationRequest.getCheckOut().isAfter(reservationRequest.getCheckIn())) {
+        if (!reservation.getCheckOut().isAfter(reservation.getCheckIn())) {
             throw new IllegalArgumentException("Check-out date must be after check-in date");
         }
-        Customer customer = customerRepository.findById(reservationRequest.getCustomerId())
-                .orElseThrow(() -> new EntityNotFoundException("Customer not found"));
-
-
-        Room room = roomRepository.findById(reservationRequest.getRoomId())
-                .orElseThrow(() -> new EntityNotFoundException("Room not found"));
-
-        boolean overlapping = reservationRepository.existsOverlappingReservation(
-                room.getId(),
-                reservationRequest.getCheckIn(),
-                reservationRequest.getCheckOut()
-        );
-
-        if (overlapping) {
-            throw new IllegalStateException("Room is not available for the selected dates");
-        }
-
-        Reservation reservation = new Reservation();
-        reservation.setCheckIn(reservationRequest.getCheckIn());
-        reservation.setCheckOut(reservationRequest.getCheckOut());
-        reservation.setCustomer(customer);
-        reservation.setRoom(room);
-        reservation.setStatus(ReservationStatus.ONGOING);
 
         return reservationRepository.save(reservation);
 
@@ -117,23 +92,24 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public Reservation addPackage(AddPackageRequest addPackageRequest) {
-        Customer customer = customerRepository.findById(addPackageRequest.getCustomerId())
-                .orElseThrow(() -> new EntityNotFoundException("Customer not found"));
+    public Reservation addPackage(Integer reservationId, Integer packageId) {
 
-        HotelPackage hotelPackage = packageRepository.findById(addPackageRequest.getHotelPackageId())
+        HotelPackage hotelPackage = packageRepository.findById(packageId)
                 .orElseThrow(() -> new EntityNotFoundException("Package not found"));
 
-        Room room = roomRepository.findById(addPackageRequest.getRoomId())
-                .orElseThrow(() -> new EntityNotFoundException("Room not found"));
-        Reservation reservation = reservationRepository
-                .findByCustomerIdAndRoomId(
-                        addPackageRequest.getCustomerId(),
-                        addPackageRequest.getRoomId()
-                )
-                .orElseThrow(() -> new IllegalStateException(
-                        "Customer has no active reservation for this room"
-                ));
+        Reservation reservation = reservationRepository.findById(reservationId)
+                .orElseThrow(() -> new EntityNotFoundException("Reservation not found"));
+
+        boolean result = reservationRepository.existsByIdAndStatusNot(
+                reservationId,
+                ReservationStatus.CANCELLED
+        );
+
+        if (!result) {
+            throw new IllegalStateException(
+                    "The reservation is cancelled!"
+            );
+        }
 
         if (hotelPackage.getQuantity() <= 0) {
             throw new IllegalStateException("Package is no longer available");
@@ -160,28 +136,11 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public Review leaveReview (WriteReviewRequest writeReviewRequest){
-        if (writeReviewRequest.getRating() < 1 || writeReviewRequest.getRating() > 5) {
-            throw new IllegalArgumentException("Rating must be between 1 and 5");
-        }
-
-        Customer customer = customerRepository.findById(writeReviewRequest.getCustomerId())
-                .orElseThrow(() -> new EntityNotFoundException("Customer not found"));
-
-        Room room = roomRepository.findById(writeReviewRequest.getRoomId())
-                .orElseThrow(() -> new EntityNotFoundException("Room not found"));
-
-        boolean alreadyReviewed = reviewRepository.existsByCustomerAndRoom(customer, room);
+    public Review leaveReview (Review review){
+        boolean alreadyReviewed = reviewRepository.existsByCustomerAndRoom(review.getCustomer(), review.getRoom());
         if (alreadyReviewed) {
             throw new IllegalStateException("Customer has already left a review for this room");
         }
-        Review review = new Review();
-        review.setRating(writeReviewRequest.getRating());
-        review.setComment(writeReviewRequest.getComment());
-        review.setCustomer(customer);
-        review.setRoom(room);
-        review.setDate(LocalDate.from(LocalDateTime.now()));
-
 
         return reviewRepository.save(review);
     }

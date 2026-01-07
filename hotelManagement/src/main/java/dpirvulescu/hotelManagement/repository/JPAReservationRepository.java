@@ -1,6 +1,7 @@
 package dpirvulescu.hotelManagement.repository;
 
 import dpirvulescu.hotelManagement.model.Reservation;
+import dpirvulescu.hotelManagement.model.ReservationStatus;
 import dpirvulescu.hotelManagement.model.Room;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -11,11 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface JPAReservationRepository extends JpaRepository<Reservation, Integer> {
-    Optional<Reservation> findByCustomerIdAndRoomId(
-            Integer customerId,
-            Integer roomId
-    );
-
+    boolean existsByIdAndStatusNot(Integer id, ReservationStatus status);
     @Query("""
         SELECT CASE WHEN COUNT(r) > 0 THEN true ELSE false END
         FROM Reservation r

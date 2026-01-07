@@ -42,8 +42,7 @@ public class Reservation {
     private ReservationStatus status;
 
 
-    public Reservation(Integer id, LocalDate checkIn, LocalDate checkOut, Room room, Customer customer, ReservationStatus status) {
-        this.id = id;
+    public Reservation( LocalDate checkIn, LocalDate checkOut, Room room, Customer customer, ReservationStatus status) {
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.room = room;
